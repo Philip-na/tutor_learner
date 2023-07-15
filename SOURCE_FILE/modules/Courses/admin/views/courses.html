@@ -1,5 +1,6 @@
 
 <main >
+  <?php var_dump($variable['courses']); ?>
   <h1>Courses
     <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Course</button>
   </h1>
@@ -118,6 +119,7 @@
                     
                     <th> Duration </th>
                     <th> Prerequsist</th>
+                    <th> Enrollments</th>
                     <th> Category</th>
                     <th> Date of Creation</th>
                     <th>Action</th>
@@ -133,11 +135,13 @@
                     <td>
                       <?=$course->name ?>
                   </td>
-                    <td> <?=$course->tutorname ?></td>
+                    <td> <?=$course->tutor->username ?? "" ?></td>
                     
                     <td> <?=$course->duration  ?? '' ?> </td>
                     <td> <?=$course->prerequisites ?? '' ?> </td>
+                    <td><?=count($course->enrolls) ?? 0 ?></td>
                     <td><?=$course->category ?? '' ?> </td>
+                    
                     <td><?=$course->created ?? '' ?> </td>
                     <td>     
                         <div class="menu">

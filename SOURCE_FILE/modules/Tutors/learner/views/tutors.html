@@ -30,7 +30,7 @@
                     <td> <?=$i;?> </td>
                     <td><?=$t->username ?? " " ?></td>
                     <td>
-                      <!-- <p class="status paid">Paid</p> -->
+                      <?=$t->course->name ?? '' ?>
                   </td>
                   <td><?=$t->email ?? " " ?></td>
                   <td><?=$t->phone ?? " " ?></td>

@@ -54,8 +54,8 @@ class Courses extends Entity {
             $obj->created = $u->created ?? '';
             $obj->tutorid = $u->tutorid ?? '';
             $obj->category = $u->category ?? '';
-            $obj->tutorname = $this->yxz("User",['id'=>$u->tutorid],'username');
-            $obj->tutoremail = $this->yxz("User",['id'=>$u->tutorid],'email');
+            $obj->tutor = $this->yxz("User",['id'=>$u->tutorid]);
+            $obj->enrolls = $this->get_course_enrolls($u->id);
             $y[] = $obj;
         }
         return $y;
@@ -71,6 +71,11 @@ class Courses extends Entity {
             }
         }
         return $rest;
+    }
+
+    private function get_course_enrolls($value){
+        $y = new Enrollment($this->dbc);
+        return $y->findAll(['courseid'=>$value],'AND');
     }
 
     

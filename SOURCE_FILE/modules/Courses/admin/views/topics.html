@@ -1,4 +1,5 @@
 <main >
+  <!-- <?php var_dump($variable['topics']) ?> -->
   <h1>Topics
     <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Create Topic</button>
   </h1>
@@ -72,22 +73,21 @@
                 </tr>
             </thead>
             <tbody>
-              <?php $i = 0; foreach($variable['topics'] as $t) { ?>
+              <?php $i = 1; foreach($variable['topics'] as $t) { ?>
                 <tr>
                     <td> <?=$i ?? '' ?> </td>
                     <td> <?=$t->name ?> </td>
                     <td>
-                      <p class="status paid">Paid</p>
+                      <?=$t->course->name ?? '' ?>
                   </td>
-                    
                     <td> 17 Dec, 2022 </td>
-                    
                    <td>
-                    <i  class="fas fa-trash-alt fa-lg"></i>
-                  
-                    <!-- <i onclick="document.getElementById('id01')" class="fas fa-trash-alt fa-lg"></i> -->
-                    &nbsp;
-                    <i class="fas fa-pen fa-lg" id="myBtn1"></i>
+                    <div class="menu">
+                      <button class="actionBtn">Action</button>           
+                      <ul class="menu-link">
+                          <li><a href="index.php?seo_name=tutor_topics&amp;act=del&amp;id=<?=$t->id ?>">delete</a></li>
+                      </ul>
+                    </div>
                    </td>
                 </tr>
               <?php $i++; } ?> 
@@ -96,3 +96,17 @@
     </div>
 </div>
 </main>
+
+
+<script >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>

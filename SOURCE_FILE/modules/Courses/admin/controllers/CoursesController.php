@@ -47,6 +47,10 @@ class CoursesController extends Controller{
             if($_POST['saveTopic'] ?? false){  
                 $tobj->addTopic($_POST);
             }
+            if($_GET['act'] ?? '' == 'del'){
+                $tobj->findBy(['id'=>$_GET['id']]);
+                $tobj->delete();
+            }
             $variable['topics'] = $tobj->getTopics();
     
             $this->template->view('courses/admin/views/topics',$variable);

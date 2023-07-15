@@ -25,7 +25,25 @@ class User extends Entity{
     }
 
     public function getTutors(){
-        return $this->findAll(['role'=>'tutor'], 'AND');
+        // return $this->findAll(['role'=>'tutor'], 'AND');
+        $y = [];
+        
+        $x = $this->findAll(['role'=>'tutor'], 'AND');
+        
+        foreach($x as $u){
+            $obj = (object)[];
+            // set defalut fields
+            foreach($this->fields as $field){
+                $obj->$field = $u->$field ?? '';
+            }
+
+            // relelaship Dat
+            $obj->id = $u->id;
+            $obj->course = $this->yxz("Courses",['tutorid'=>$u->id]);
+           
+            $y[] = $obj;
+        }
+        return $y;
     }
 
 
