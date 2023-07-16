@@ -13,7 +13,9 @@ class CoursesController extends Controller{
 
 
         $courseObj = new Courses($this->dbc);
-        $variable['courses'] = $courseObj->get_course_tutors();
+        $v = $courseObj->get_course_tutors();
+
+        $variable['courses'] = $this->getUserCourses($v);;
 
         $this->template->view('courses/learner/views/courses',$variable);
     }
@@ -26,23 +28,20 @@ class CoursesController extends Controller{
         $en = new Enrollment($this->dbc);
         $ctn = ['courseid'=>$id,'learnerid'=>$userid];
 
-    
-
-
-        if($_GET['act'] ?? '' == 'enroll'){
+        if(($_GET['act'] ?? '') == 'enroll'){
             // var_dump($id);
             if(!$en->checkEnrollement($ctn)){
                 $en->enrollMe($userid,$id);
             }
         }
 
-        // if($_GET['act'] ?? '' == 'denroll'){
+        if(($_GET['act'] ?? '') == 'denroll'){
         
-        //     if($en->checkEnrollement($ctn)){
-        //       $en->findBy($ctn,'AND');
-        //       $en->delete();
-        //     }
-        // }
+            if($en->checkEnrollement($ctn)){
+              $en->findBy($ctn,'AND');
+              $en->delete();
+            }
+        }
 
         if($en->checkEnrollement($ctn)){
             $variable['state'] = true;
@@ -62,6 +61,20 @@ class CoursesController extends Controller{
         $tobj = new Topics($this->dbc);
         $variable['topics'] = $tobj->findAll(['courseid'=>$id], 'AND');
         $this->template->view('courses/learner/views/enroll',$variable);
+    }
+    private function getUserCourses($value){
+        $y = [];
+        foreach($value as $s){
+            $cid = $s->id ?? '';
+            $lid = $_SESSION['user']['id'] ?? '';
+            $ctn = ['learnerid'=>$lid, 'courseid'=>$cid];
+            // var_dump($cid);
+            $en = new Enrollment($this->dbc);
+            if($en->checkEnrollement($ctn)){
+                $y[] = $s;
+            }
+        }
+        return $y;
     }
 }
 

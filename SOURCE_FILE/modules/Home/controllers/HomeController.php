@@ -22,8 +22,6 @@ class HomeController extends Controller{
         }else {
             return true;
         }
-      
-    
     }
     
        function defaultAction(){

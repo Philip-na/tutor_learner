@@ -1,4 +1,5 @@
 <main >
+  
   <h1>Course Details & Tracking</h1>
 
   <div class="cards">
@@ -39,7 +40,7 @@
                 <tr>
                     <th> <input type="checkbox"></th>
                     <th> Course Name </th>
-                    <th> Topic </th>
+                    <!-- <th> Topic </th> -->
                     <th> Course Duration </th>
                     <th>Prerequisites</th>
                     <th>Assessment & Evaluation Technique</th>
@@ -51,9 +52,10 @@
                 <tr>
                     <td><?=$i; ?> </td>
                     <td> <?=$c->name; ?></td>
-                    <td></td>
+                    <!-- <td><?=$c->tutor->username; ?></td> -->
                     <td>
-                  </td>      
+                      <?=$c->duration; ?>
+                   </td>      
                 </tr>
               <?php $i = $i + 1; } ?>
             </tbody>

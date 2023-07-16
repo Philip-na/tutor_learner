@@ -1,5 +1,6 @@
  <main >
-    <h1>Welcome Back John
+  <!-- <?php var_dump($variable['session']) ?> -->
+    <h1>Welcome Back <?=$_SESSION['user']['name'] ?? '' ?>
       <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Submission</button>
     </h1>
     <div id="myModal" class="modal">
@@ -17,7 +18,7 @@
           </div>
           <div class="form-group">
             <label for="submission-link">Submission Link</label>
-            <input type="text" id="session" name="session" >
+            <input type="text" id="session" name="slink" >
           </div>
           <div class="drop-zone">
             <p class="drop-zone__prompt"> <span>click to upload</span> or drag and drop
@@ -42,10 +43,8 @@
             </p>
           </div>
           <div class="graphs">
-            <span>15</span>
-            <div class="graph">
-              
-            </div>
+            <span><?=count($variable['session']) ?></span>
+
           </div>
           
         </div>
@@ -56,9 +55,7 @@
           </div>
           <div class="graphs">
             <span>4</span>
-            <div class="graph">
-              
-            </div>
+  
           </div>
         </div>
         <div class="card">
@@ -68,9 +65,7 @@
           </div>
           <div class="graphs">
             <span>4</span>
-            <div class="graph">
-              
-            </div>
+
           </div>
         </div>   
     </div>
@@ -91,6 +86,7 @@
                       <th> Course Name</th>
                       <th> Topic</th>
                       <th> Session Details</th>
+                      <th> Status</th>
                       <th>Attendence</th>
                       
                       
@@ -98,57 +94,34 @@
                   </tr>
               </thead>
               <tbody>
+                <?php $i = 1; foreach($variable['session'] as $s) { ?>
                   <tr>
-                      <td> 1 </td>
-                      <td> Zinzu Chan Lee</td>
+                      <td> <?=$i; ?> </td>
+                      <td> <?=$s->topic->course->name ?? '' ?></td>
                       <td>
-                        <p class="status course">Indroduction to UI/UX</p>
-                    </td>
-                      <td> Thursday,26th/05/2023 <br>
-                      meet.google.com/xyz-abc
+                        <p ><?=$s->topic->name ?? '' ?></p>
                       </td>
+                      <td> <?=$s->sessiondt ?? '' ?>
+                      </td>
+                      <td> <?=$s->attend->status ?? '' ?> </td>
                       <td><div class="table-buttons">
-                        <button class="missed">Missed</button>
-                        <button class="attend">Attend</button>
+                        <!-- <button class="missed">Missed</button>
+                        <button class="attend">Attend</button> -->
+                        <div class="menu">
+                          <button class="actionBtn">Action</button>
+                          
+                          <ul class="menu-link">
+                            <li><a href="index.php?seo_name=ldashboard&amp;act=missed&amp;id=<?=$s->id ?>">missed</a></li>
+                            <li><a href="index.php?seo_name=ldashboard&amp;act=attend&amp;id=<?=$s->id ?>">Attended</a></li>
+  
+                          </ul>
+                        </div> 
+                      </td>  
               
-                      </div></td>
-                      
-                     
+                      </div></td>            
                   </tr>
-                  <tr>
-                      <td> 2 </td>
-                      <td>Jeet Saru </td>
-                      <td>
-                        <p class="status course">Indroduction to UI/UX</p>
-                    </td>
-                    <td> Friday,27th/05/2023 <br>
-                      meet.google.com/xyz-abc
-                      </td>
-                      <td> <div class="table-buttons">
-                        <button class="missed">Missed</button>
-                        <button class="attend">Attend</button>
-              
-                      </div> </td>
-                     
-                      
-                  </tr>
-                  <tr>
-                      <td> 3</td>
-                      <td> Sonal Gharti </td>
-                      <td>
-                        <p class="status course">Indroduction to UI/UX</p>
-                    </td>
-                    <td> Monday,29th/05/2023 <br>
-                      meet.google.com/xyz-abc
-                      </td>
-                      <td> <div class="table-buttons">
-                        <button class="missed">Missed</button>
-                        <button class="attend">Attend</button>
-              
-                      </div> </td>
-                      
-                      
-                  </tr>
+
+                <?php $i++; } ?>
                                  
               </tbody>
               
@@ -162,3 +135,16 @@
   </div>
   
   </main>
+
+  <script >
+    const allaction = document.querySelectorAll('main .menu');
+  
+   allaction.forEach(item=> {
+     const icon = item.querySelector('.actionBtn');
+     const menuLink = item.querySelector('.menu-link');
+   
+     icon.addEventListener('click', function () {
+       menuLink.classList.toggle('show');
+     })
+   })
+  </script>

@@ -22,7 +22,7 @@ class Sessions extends Entity {
         
     }
 
-    public function get_session($value = [],$oprt = 'AND'){
+    public function get_sessions($value = [],$oprt = 'AND'){
         $y = [];
         if(empty($value)){
             $x = $this->findAll();
@@ -39,8 +39,15 @@ class Sessions extends Entity {
             }
             // relelaship Dat
             $obj->id = $u->id;
-            $obj->topic = $this->yxz("Topics",['id'=>$u->topicid]);
+            $t = new Topics($this->dbc);
+            $obj->topic = $t->getTopic(['id'=>$u->topicid]);
             $obj->tutor = $this->yxz("User",['id'=>$u->tutorId]);
+
+            // atend
+            $a = new Sessionatedence($this->dbc);
+            $i = $_SESSION['user']['id'];
+            $a->findBy(['learnerid'=>$i,'sessionid'=>$u->id]);
+            $obj->attend = $a;
                
             $y[] = $obj;
         }

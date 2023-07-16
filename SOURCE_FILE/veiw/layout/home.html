@@ -118,105 +118,107 @@
                     <div class="tab-item web-design select_tab">
                       
                       <div class="tab-content-right">
+
+                        <!-- ################ -->
+                    <?php foreach($variable['passed'] as $p) { ?>
                     <div class="list">
                     <div class="category">
-                        <span>Designer</span>
-                        <span > <a href="">View Project &#x2197;</a> </span>
+                        <span><?=$p->courseData->category ?? '' ?></span>
+                        <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
                     </div>
-                    <p class="name">Tuyishimire Bertrand</p> 
+                    <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                    <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                     
                     
                     </div>
-                    <div class="list">
-                        <div class="category">
-                            <span>Web Developer</span>
-                            <span > <a href="">View Project &#x2197;</a> </span>
-                        </div>
-                        <p class="name">Okitoi john</p> 
-                        
-                        
-                        </div>
-                        
-                      
+
+                    <?php } ?>
+
+                    <!-- ################# -->
+                    
                        
                       </div>
                     </div>
                     <div class="tab-item web-development">
                         <div class="tab-content-right">
+                        <!-- ################ -->
+                        <?php foreach($variable['passed'] as $p) { ?>
+                          <?php $x = $p->courseData->category ?? '' ?>
+                          <?php if($x  == "UI UX Design") { ?>
                             <div class="list">
                             <div class="category">
-                                <span>Designer</span>
-                                <span > <a href="">View Project &#x2197;</a> </span>
+                                <span><?=$p->courseData->category ?? '' ?></span>
+                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
+                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
                             </div>
-                            <p class="name">Tuyishimire Bertrand</p> 
+                            <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                            <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                             
                             
                             </div>
-                            <div class="list">
-                                <div class="category">
-                                    <span>Web Developer</span>
-                                    <span > <a href="">View Project &#x2197;</a> </span>
-                                </div>
-                                <p class="name">Okitoi john</p> 
-                                
-                                
-                                </div>
+                          <?php } ?>
+      
+                        <?php } ?>
+      
+                          <!-- ################# -->
                                 
                               
                                
-                              </div>
+                        </div>
                       
                     </div>
                     <div class="tab-item ux-design">
                       
                         <div class="tab-content-right">
+                                                  <!-- ################ -->
+                        <?php foreach($variable['passed'] as $p) { ?>
+                          <?php $x = $p->courseData->category ?? '' ?>
+                          <?php if($x  == "Web Development") { ?>
                             <div class="list">
                             <div class="category">
-                                <span>Designer</span>
-                                <span > <a href="">View Project &#x2197;</a> </span>
+                                <span><?=$p->courseData->category ?? '' ?></span>
+                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
+                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
                             </div>
-                            <p class="name">Tuyishimire Bertrand</p> 
+                            <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                            <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                             
                             
                             </div>
-                            <div class="list">
-                                <div class="category">
-                                    <span>Web Developer</span>
-                                    <span > <a href="">View Project &#x2197;</a> </span>
-                                </div>
-                                <p class="name">Okitoi john</p> 
-                                
-                                
-                                </div>
-                                
-                              
-                               
-                              </div>
+                          <?php } ?>
+      
+                        <?php } ?>
+      
+                          <!-- ################# -->
+                        </div>
                     </div>
                     <div class="tab-item app-development">
                         <div class="tab-content-right">
+
+                                                                            <!-- ################ -->
+                        <?php foreach($variable['passed'] as $p) { ?>
+                          <?php $x = $p->courseData->category ?? '' ?>
+                          <?php if($x  == "Mobile Development") { ?>
                             <div class="list">
                             <div class="category">
-                                <span>Designer</span>
-                                <span > <a href="">View Project &#x2197;</a> </span>
+                                <span><?=$p->courseData->category ?? '' ?></span>
+                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
+                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
                             </div>
-                            <p class="name">Tuyishimire Bertrand</p> 
+                            <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                            <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                             
                             
                             </div>
-                            <div class="list">
-                                <div class="category">
-                                    <span>Web Developer</span>
-                                    <span > <a href="">View Project &#x2197;</a> </span>
-                                </div>
-                                <p class="name">Okitoi john</p> 
-                                
-                                
-                                </div>
+                          <?php } ?>
+      
+                        <?php } ?>
+      
+                          <!-- ################# -->
                                 
                               
                                
-                              </div>
+                        </div>
                       
                     </div>
                   </div>

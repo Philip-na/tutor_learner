@@ -42,12 +42,23 @@ class Topics extends Entity {
             $obj->id = $u->id;
             $cid = $u->courseId ?? 0;
             $obj->course = $this->yxz("Courses",['id'=>$cid]);
-            // $obj->learner = $this->yxz("User",['id'=>$u->learnerid],'username');
-            // $obj->learnerData = $this->yxz("User",['id'=>$u->learnerid]);
-            // $obj->courseData = $this->yxz("Courses",['id'=>3]);
+
             $y[] = $obj;
         }
         return $y;
+    }
+
+    public function getTopic($value){
+
+        $this->findBy($value);
+        $obj = (object)[];
+        foreach($this->fields as $field){
+            $obj->$field = $this->$field ?? '';
+        }
+        $obj->id = $this->id ?? '';
+        $cid = $this->courseId ?? 0;
+        $obj->course = $this->yxz("Courses",['id'=>$cid]);
+        return $obj;
     }
 
     private function setTopicValue($value){
