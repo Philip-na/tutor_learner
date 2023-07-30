@@ -124,7 +124,7 @@
                     <div class="list">
                     <div class="category">
                         <span><?=$p->courseData->category ?? '' ?></span>
-                        <span > <a href="">View Project &#x2197;</a> </span>
+                        <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                     </div>
                     <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
                     <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
@@ -149,8 +149,7 @@
                             <div class="list">
                             <div class="category">
                                 <span><?=$p->courseData->category ?? '' ?></span>
-                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
-                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
+                                <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                             </div>
                             <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
                             <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
@@ -178,8 +177,7 @@
                             <div class="list">
                             <div class="category">
                                 <span><?=$p->courseData->category ?? '' ?></span>
-                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
-                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
+                                <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                             </div>
                             <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
                             <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
@@ -203,8 +201,7 @@
                             <div class="list">
                             <div class="category">
                                 <span><?=$p->courseData->category ?? '' ?></span>
-                                <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
-                                <!-- <span><?php var_dump(($p->courseData->category ?? '' === "UI UX Design")); ?></span> -->
+                                <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                             </div>
                             <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
                             <p class="name"><?=$p->learnerData->email ?? ''; ?></p>

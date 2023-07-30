@@ -61,6 +61,7 @@ class Enrollment extends Entity {
             $obj->learner = $this->yxz("User",['id'=>$u->learnerid],'username');
             $obj->learnerData = $this->yxz("User",['id'=>$u->learnerid]);
             $obj->courseData = $this->yxz("Courses",['id'=>$u->courseid]);
+            $obj->submission = $this->yxz("Submissions",['courseid'=>$u->courseid,'studentid'=>$u->learnerid]);
             $y[] = $obj;
         }
         return $y;
