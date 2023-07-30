@@ -120,14 +120,15 @@
                       <div class="tab-content-right">
 
                         <!-- ################ -->
-                    <?php foreach($variable['passed'] as $p) { ?>
+                    <?php foreach(($variable['passed'] ?? []) as $p) { ?>
                     <div class="list">
                     <div class="category">
                         <span><?=$p->courseData->category ?? '' ?></span>
-                        <!-- <span > <a href="">View Project &#x2197;</a> </span> -->
+                        <span > <a href="">View Project &#x2197;</a> </span>
                     </div>
                     <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
                     <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
+                    <br>
                     
                     
                     </div>
@@ -142,7 +143,7 @@
                     <div class="tab-item web-development">
                         <div class="tab-content-right">
                         <!-- ################ -->
-                        <?php foreach($variable['passed'] as $p) { ?>
+                        <?php foreach(($variable['passed'] ?? []) as $p) { ?>
                           <?php $x = $p->courseData->category ?? '' ?>
                           <?php if($x  == "UI UX Design") { ?>
                             <div class="list">
@@ -171,7 +172,7 @@
                       
                         <div class="tab-content-right">
                                                   <!-- ################ -->
-                        <?php foreach($variable['passed'] as $p) { ?>
+                        <?php foreach(($variable['passed'] ?? []) as $p) { ?>
                           <?php $x = $p->courseData->category ?? '' ?>
                           <?php if($x  == "Web Development") { ?>
                             <div class="list">
@@ -196,7 +197,7 @@
                         <div class="tab-content-right">
 
                                                                             <!-- ################ -->
-                        <?php foreach($variable['passed'] as $p) { ?>
+                        <?php foreach(($variable['passed'] ?? []) as $p) { ?>
                           <?php $x = $p->courseData->category ?? '' ?>
                           <?php if($x  == "Mobile Development") { ?>
                             <div class="list">

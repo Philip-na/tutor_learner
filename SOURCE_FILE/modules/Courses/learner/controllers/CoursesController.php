@@ -14,7 +14,6 @@ class CoursesController extends Controller{
 
         $courseObj = new Courses($this->dbc);
         $v = $courseObj->get_course_tutors();
-
         $variable['courses'] = $this->getUserCourses($v);;
 
         $this->template->view('courses/learner/views/courses',$variable);

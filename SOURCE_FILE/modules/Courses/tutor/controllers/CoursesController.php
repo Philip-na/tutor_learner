@@ -13,26 +13,18 @@ class CoursesController extends Controller{
         $pageObJ = new Page($this->dbc);
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
-        $tobj = new Topics($this->dbc);
+
         $tutorid = $_SESSION['user']['id'];
-        $courseid = $tobj->yxz('Courses',["tutorid"=>$tutorid],'id');
-        
+        $courseid = $pageObJ->yxz('Courses',["tutorid"=>$tutorid],'id');
+
+        $tobj = new Topics($this->dbc);
         $variable['topics'] = $tobj->getTopics(['courseid'=>$courseid]);
         $sessionHadller = new Sessions($this->dbc);
 
-        if($_POST['saveS'] ?? false){
-            // var_dump($_POST);
-            $sessionHadller->saveSession($_POST);
-        }
+        if($_POST['saveS'] ?? false){     $sessionHadller->saveSession($_POST);}
+        if($_GET['act'] ?? '' =='del'){ $sessionHadller->findBy(['id'=>$_GET['id']]); $sessionHadller->delete(); }
 
-        if($_GET['act'] ?? '' =='del'){
-            $sessionHadller->findBy(['id'=>$_GET['id']]);
-            $sessionHadller->delete();
-        }
-
-        
-        $variable['session'] = $sessionHadller->get_session(); 
-
+        $variable['session'] = $sessionHadller->get_sessions(["tutorid"=>$tutorid]); 
         $this->template->view('courses/tutor/views/sessions',$variable);
     }
 

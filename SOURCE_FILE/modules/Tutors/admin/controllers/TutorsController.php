@@ -8,11 +8,7 @@ class TutorsController extends Controller{
         $pageObJ = new Page($this->dbc);
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
-
         
-       
-        
-
         if($_POST['savet'] ?? 0 === 1){
             $tutorobj = new Auth($this->dbc);
             $tutorobj->createUser($this->prepareUser($_POST));

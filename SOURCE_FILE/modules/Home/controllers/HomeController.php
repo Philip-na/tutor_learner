@@ -28,9 +28,11 @@ class HomeController extends Controller{
         $pageObJ = new Page($this->dbc);
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
-
         $courseObj = new Courses($this->dbc);
         $variable['courses'] = $courseObj->getallCourses();
+
+        $passed = new Enrollment($this->dbc);
+        $variable['passed'] = $passed->get_Enrolled_Course(['status'=>'complete']);
              
         $this->template->view('',$variable);
     }

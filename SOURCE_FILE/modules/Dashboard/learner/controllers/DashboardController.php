@@ -11,24 +11,27 @@ class DashboardController extends Controller{
         $pageObJ = new Page($this->dbc);
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
-
+        // mark attendence
         $sessionObj = new Sessions($this->dbc);
-
         $x = $_GET['act'] ?? ' ';
+        if($x == 'missed'){ $this->attend('missed'); }
+        if($x == 'attend'){ $this->attend('attended'); }
+        if(($_POST['sub'] ?? '') == 1){ $this->makeSubmission();}
 
-        if($x == 'missed'){
-            $this->attend('missed');
-            // var_dump('missed');
-        }
-        if($x == 'attend'){
-            $this->attend('attended');
-            // var_dump('attend');
-        }
-
+        // get user session
         $v = $sessionObj->get_sessions();
-        
-        $variable['session'] = $this->getUserSession($v);      
+        $variable['session'] = $this->getUserSession($v); 
+        // get courses
+        $courseObj = new Courses($this->dbc);
+        $v = $courseObj->get_course_tutors();
+        $variable['courses'] = $this->getUserCourses($v);
+
         $this->template->view('dashboard/learner/views/dashboard',$variable);
+    }
+
+    private function makeSubmission(){
+      $a = new Submissions($this->dbc);
+      $a->saveSubmission($_POST);
     }
 
     private function getUserSession($value){
@@ -37,7 +40,19 @@ class DashboardController extends Controller{
             $cid = $s->topic->course->id ?? '';
             $lid = $_SESSION['user']['id'] ?? '';
             $ctn = ['learnerid'=>$lid, 'courseid'=>$cid];
-            // var_dump($cid);
+            $en = new Enrollment($this->dbc);
+            if($en->checkEnrollement($ctn)){ $y[] = $s; }
+        }
+        return $y;
+    }
+
+    // user course filter
+    private function getUserCourses($value){
+        $y = [];
+        foreach($value as $s){
+            $cid = $s->id ?? '';
+            $lid = $_SESSION['user']['id'] ?? '';
+            $ctn = ['learnerid'=>$lid, 'courseid'=>$cid];
             $en = new Enrollment($this->dbc);
             if($en->checkEnrollement($ctn)){
                 $y[] = $s;

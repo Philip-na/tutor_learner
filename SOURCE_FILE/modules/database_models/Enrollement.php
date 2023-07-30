@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use PhpParser\Node\Expr\New_;
 

@@ -1,33 +1,8 @@
 <main >
+ 
   <h1>Submissions & Feedback
     
   </h1>
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <form>
-        <h2>create session</h2>
-        <p>please enter the details for the session</p>
-        <div class="form-group">
-          <label for="name">Tutor Name</label>
-          <input type="text" id="name" name="name" >
-        </div>
-        <div class="form-group">
-          <label for="topic">Topic</label>
-          <input type="text" id="topic" name="topic" >
-        </div>
-        <div class="form-group">
-          <label for="session">Session details</label>
-          <input type="text" id="session" name="session" >
-        </div>
-        
-       <div class="button">
-        <input type="submit" value="close" class="btn1-submit close">
-        <input type="submit" value="Submit" class="btn2-submit">
-      </div>
-      </form>
-    </div>
-  </div>
-  
   <div class="cards">
     <div class="card">
       <div class="header">
@@ -42,9 +17,9 @@
     <div class="card">
       <div class="header">
        
-        <p class="alert">Course Topic</p>
+        <p class="alert">Submissions</p>
       </div>
-       <h1>12</h1>
+       <h1><?=count($variable['submissions']) ?></h1>
     </div>
     <div class="card">
       <div class="header">
@@ -67,41 +42,27 @@
                 <tr>
                     <th> <input type="checkbox"></th>
                     <th> course Name </th>
-                    <th>Tutor</th>
-                    <th> Grade </th>
-                    <th>Overall Evaluation</th>
+                    <th>Submission Name</th>
+                    <th> Project Link</th>
+                    <th>Project Pdf</th>
                     <th>Suggestions For Improvement</th>              
                     
                 </tr>
             </thead>
             <tbody>
+              <?php $i = 1; foreach($variable['submissions'] as $s){ ?>
                 <tr>
-                    <td> 1 </td>
-                    <td> Web design</td>
-                    <td></td>
-                    <td> </td>
-                    <td>  </td>
+                    <td> <?=$i ?? '' ?> </td>
+                    <td> <?=$s->course->name ?? '' ?></td>
+                    <td><?=$s->name ?? '' ?></td>
+                    <td> <a href="<?=$s->slink ?? '' ?>" target="_blank" rel="noopener noreferrer">Go to project</a></td>
+                    <td> <a href="index.php?seo_name=submissions&amp;act=download&amp;id=<?=$s->id ?>">Download Pdf</a>  </td>
                     <td></td>
                    
                 </tr>
-                <tr>
-                    <td> 2 </td>
-                    <td>Cyber Security </td>
-                    <td></td>
-                    <td> </td>
-                    <td>  </td>
-                   <td></td>
-                    
-                </tr>
-                <tr>
-                    <td> 3</td>
-                    <td> UI/UX Design</td>
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td></td>
-                    
-                </tr>          
+
+              <?php $i++; } ?>
+                     
             </tbody>
         </table>
         <div class="table-btn">

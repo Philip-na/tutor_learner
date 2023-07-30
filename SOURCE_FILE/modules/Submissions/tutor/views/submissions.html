@@ -1,5 +1,5 @@
 <main >
-  <?php var_dump($variable['submissions']); ?>
+  <!-- <?php var_dump($variable['submissions']); ?> -->
   <h1>Submissions    
   </h1>
   <div id="myModal" class="modal">
@@ -45,8 +45,8 @@
                     <th> <input type="checkbox"></th>
                     <th> Student Name <span class="icon-arrow">&DownArrow;</span></th>
                     <th> Course</th>
-                    
-                    <th>Submission Date</th>
+                    <th>Submission name</th>
+                    <th>Submission Pdf</th>
                     <th>Submission link</th>
                     <th>Feedback</th>
                     
@@ -62,8 +62,9 @@
                       <?=$s->learner->username ?? '' ?>
                     </td>
                     <td> <?=$s->course->name ?? '' ?></td>  
-                    <td> 17 Dec, 2022 </td>
-                    <td><?=$s->link ?? '' ?> </td>
+                    <td> <?=$s->name ?? '' ?></td>  
+                    <td> <a href="index.php?seo_name=tutor_submission&amp;act=download&amp;id=<?=$s->id ?>">Download Pdf</a> </td>
+                    <td><a href="<?=$s->slink ?? '' ?>" target="_blank" rel="noopener noreferrer">Go to project</a> </td>
                     <td><button class="feedback" id="popup-button">Feedback</button></td>
                     
                    

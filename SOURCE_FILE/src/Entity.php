@@ -168,11 +168,7 @@ abstract class Entity {
                 $preparedFields[$keyname] = $this->$keyname;
             }
         }
-
-       
-
         $keyBindingString = implode(' AND ', $keyBindings);
-
         $sql = "DELETE FROM " . $this->tableName . " WHERE " . $keyBindingString;
         $stmt = $this->dbc->prepare($sql);
         $stmt->execute($preparedFields);
@@ -208,7 +204,5 @@ abstract class Entity {
         }
 
     }
-    
-
-
+  
 }
