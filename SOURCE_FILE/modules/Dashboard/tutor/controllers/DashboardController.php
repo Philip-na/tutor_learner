@@ -11,7 +11,6 @@ class DashboardController extends Controller{
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
 
-
         if($_GET['act'] ?? '' == 'pass'){
           $eobj = new Enrollment($this->dbc);
           $eobj->findBy(['id'=>$_GET['id']], '');

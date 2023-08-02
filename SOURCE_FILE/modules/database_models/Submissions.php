@@ -15,7 +15,8 @@ class Submissions extends Entity {
             'courseid',
             'name',
             'slink',
-            'filename'
+            'filename',
+            'status'
            
         ];
     }
@@ -86,7 +87,8 @@ class Submissions extends Entity {
             'courseid' => $courseId,
             'name' => $name,
             'slink' => $slink,
-            'filename' => $filename
+            'filename' => $filename,
+            'status' => 'Not Reviewed'
         ];
         $this->setValues($submissionData);
         $this->save();

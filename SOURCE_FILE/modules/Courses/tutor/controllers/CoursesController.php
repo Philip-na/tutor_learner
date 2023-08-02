@@ -33,6 +33,7 @@ class CoursesController extends Controller{
         $pageObJ = new Page($this->dbc);
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
+        
         $this->template->view('courses/tutor/views/progress',$variable);
     }
 }

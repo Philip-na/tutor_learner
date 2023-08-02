@@ -13,7 +13,10 @@ class SubmissionsController extends Controller{
 
         $submissionObj = new Submissions($this->dbc);
 
+        if(($_GET['act'] ?? '') == 'remove'){ $this->revomeSubmission($_GET['id']); }
+
         if(($_GET['act'] ?? '') == 'download'){ $this->getpdf(); }
+
         $variable['submissions'] = $submissionObj->get_submissions($cdtn);   
         $this->template->view('submissions/learner/views/submissions',$variable);
     }
@@ -30,6 +33,17 @@ class SubmissionsController extends Controller{
             readfile($filePath);
             exit;
         }
+    }
+    private function revomeSubmission($id){
+        $Obj = new Submissions($this->dbc);
+        $Obj->findBy(['id'=>$id],"AND");
+        if(property_exists($Obj,'id')){
+            $filepath = $Obj->getFilePath();
+            unlink($filepath);
+            $Obj->delete();
+
+        }
+
     }
 }
 

@@ -1,5 +1,13 @@
 <main >
   <!-- <?php var_dump($variable['submissions']); ?> -->
+  <?php
+  $Reviewed = 0;
+  foreach($variable['submissions'] as $r){
+    if(($r->status ?? '') == 'Reviewed'){
+      $Reviewed++;
+    }
+  }
+  ?>
   <h1>Submissions    
   </h1>
   <div id="myModal" class="modal">
@@ -20,13 +28,11 @@
       <div class="card">
         <div class="header">
          
-          <p class="alert">Total Submissions</p>
+          <p class="alert">Reviewed Submissions</p>
         </div>
         <div class="graphs">
-          <span>15</span>
-          <div class="graph">
-
-          </div>
+          <span><?=$Reviewed; ?> Out of <?=count($variable['submissions']); ?></span>
+         
         </div>
       </div>
          
@@ -65,7 +71,19 @@
                     <td> <?=$s->name ?? '' ?></td>  
                     <td> <a href="index.php?seo_name=tutor_submission&amp;act=download&amp;id=<?=$s->id ?>">Download Pdf</a> </td>
                     <td><a href="<?=$s->slink ?? '' ?>" target="_blank" rel="noopener noreferrer">Go to project</a> </td>
-                    <td><button class="feedback" id="popup-button">Feedback</button></td>
+                    <td>
+                      <!-- <button class="feedback" id="popup-button">Feedback</button> -->
+                      <?=$s->status ?? ''; ?>
+                    </td>
+                    <td>
+                      <div class="menu">
+                        <button class="actionBtn">Action</button>
+                        
+                        <ul class="menu-link">
+                            <li><a href="index.php?seo_name=tutor_submission&amp;act=rev&amp;id=<?=$s->id ?>">Reviewed</a></li>
+                        </ul>
+                      </div> 
+                    </td>   
                     
                    
                 </tr>
@@ -103,3 +121,46 @@
   </div>
 </div>
 </main>
+
+
+<script >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>
+
+<script>
+  //search
+  var searchInput = document.querySelector("input[name='search']");
+  var tableRows = document.querySelectorAll(".table__body tbody tr");
+  
+  // Event listener for the search input
+  searchInput.addEventListener("input", function() {
+   var searchValue = searchInput.value.trim().toLowerCase();
+  
+   // Iterate through each table row and hide/show based on the search value
+   tableRows.forEach(function(row) {
+     var contentCells = Array.from(row.querySelectorAll("td"));
+  
+     var isContentFound = contentCells.some(function(cell) {
+       var cellContent = cell.textContent.toLowerCase();
+       return cellContent.includes(searchValue);
+     });
+  
+     if (isContentFound) {
+       row.style.display = "";
+     } else {
+       row.style.display = "none";
+     }
+   });
+  });
+  
+  
+  </script>

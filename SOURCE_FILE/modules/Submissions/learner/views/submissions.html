@@ -1,10 +1,19 @@
 <main >
  
   <h1>Submissions & Feedback
+
+    <?php
+    $Reviewed = 0;
+    foreach($variable['submissions'] as $r){
+      if(($r->status ?? '') == 'Reviewed'){
+        $Reviewed++;
+      }
+    }
+    ?>
     
   </h1>
   <div class="cards">
-    <div class="card">
+    <!-- <div class="card">
       <div class="header">
        
         <p class="alert">Course Tutor
@@ -13,7 +22,7 @@
       </div>
       <h1>Nabende Peter</h1>
       
-    </div>
+    </div> -->
     <div class="card">
       <div class="header">
        
@@ -24,9 +33,9 @@
     <div class="card">
       <div class="header">
        
-        <p class="alert">Course Coverage</p>
+        <p class="alert">Reviewed Submission</p>
       </div>
-       <h1>6 out Of 12</h1>
+       <h1><?=$Reviewed; ?> out Of <?=count($variable['submissions']) ?></h1>
     </div>   
 </div>
 
@@ -45,7 +54,7 @@
                     <th>Submission Name</th>
                     <th> Project Link</th>
                     <th>Project Pdf</th>
-                    <th>Suggestions For Improvement</th>              
+                    <th>Submission State</th>              
                     
                 </tr>
             </thead>
@@ -57,7 +66,19 @@
                     <td><?=$s->name ?? '' ?></td>
                     <td> <a href="<?=$s->slink ?? '' ?>" target="_blank" rel="noopener noreferrer">Go to project</a></td>
                     <td> <a href="index.php?seo_name=submissions&amp;act=download&amp;id=<?=$s->id ?>">Download Pdf</a>  </td>
-                    <td></td>
+                    <td><?=$s->status ?? '' ?></td>
+                    <td>
+                      <div class="menu">
+                        <button class="actionBtn">Action</button>
+  
+                        <ul class="menu-link">
+                          <!-- https://www.paypal.com/in/home https://flutterwave.com/us/  https://flutterwave.com/pay/shmtsg5teams-->
+                          <!-- <li><a href="https://flutterwave.com/pay/shmtsg5teams">Pay</a></li> -->
+                          <li><a href="index.php?seo_name=submissions&amp;act=remove&amp;id=<?=$s->id ?>">remove</a></li>
+  
+                        </ul>
+                      </div> 
+                     </td>     
                    
                 </tr>
 
@@ -72,3 +93,16 @@
     </div>
 </div>
 </main>
+
+<script  >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>

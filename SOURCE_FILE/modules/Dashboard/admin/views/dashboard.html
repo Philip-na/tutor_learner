@@ -14,9 +14,7 @@
         </div>
         <div class="graphs">
           <span><?=count($variable['learners']) ?? 0 ?></span>
-          <div class="graph">
-            
-          </div>
+        
         </div>
         
       </div>
@@ -27,9 +25,7 @@
         </div>
         <div class="graphs">
           <span><?=count($variable['tutors']) ?? 0 ?></span>
-          <div class="graph">
-
-          </div>
+         
         </div>
         
       </div>
@@ -115,3 +111,32 @@
    })
  })
 </script>
+
+<script>
+  //search
+  var searchInput = document.querySelector("input[name='search']");
+  var tableRows = document.querySelectorAll(".table__body tbody tr");
+  
+  // Event listener for the search input
+  searchInput.addEventListener("input", function() {
+   var searchValue = searchInput.value.trim().toLowerCase();
+  
+   // Iterate through each table row and hide/show based on the search value
+   tableRows.forEach(function(row) {
+     var contentCells = Array.from(row.querySelectorAll("td"));
+  
+     var isContentFound = contentCells.some(function(cell) {
+       var cellContent = cell.textContent.toLowerCase();
+       return cellContent.includes(searchValue);
+     });
+  
+     if (isContentFound) {
+       row.style.display = "";
+     } else {
+       row.style.display = "none";
+     }
+   });
+  });
+  
+  
+  </script>

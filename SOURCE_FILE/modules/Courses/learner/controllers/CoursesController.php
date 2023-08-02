@@ -1,6 +1,6 @@
 <?php
 class CoursesController extends Controller{
-
+    
     function runBeforeAction(){
         $this->setaccesslevel('learner');      
         return $this->checkPermission();
@@ -10,11 +10,19 @@ class CoursesController extends Controller{
         $pageObJ->findBy(['id'=>$this->entityId], '');
         $variable['pageObj'] = $pageObJ;
 
-
-
-        $courseObj = new Courses($this->dbc);
-        $v = $courseObj->get_course_tutors();
-        $variable['courses'] = $this->getUserCourses($v);;
+        $lid = $_SESSION['user']['id'] ?? '';
+        $EnrolledCourseObj = new Enrollment($this->dbc);
+       
+        if(($_GET['act'] ?? '') == 'unenrol'){
+            $id = $_GET['id'] ?? 0;
+            $ctn = ['id'=> $id];
+            if($EnrolledCourseObj->checkEnrollement($ctn)){
+              $EnrolledCourseObj->findBy($ctn,'AND');
+              $EnrolledCourseObj->delete();
+            }
+        }
+        $v = $EnrolledCourseObj->get_Enrolled_Course(['learnerid'=>$lid]);
+        $variable['courses'] = $v;
 
         $this->template->view('courses/learner/views/courses',$variable);
     }
@@ -42,11 +50,8 @@ class CoursesController extends Controller{
             }
         }
 
-        if($en->checkEnrollement($ctn)){
-            $variable['state'] = true;
-        }else{
-            $variable['state'] = false;
-        }
+        $variable['state'] = false;
+        if($en->checkEnrollement($ctn)){ $variable['state'] = true;}
 
         $cobj = new Courses($this->dbc);
         $cobj->findBy(['id'=>$id], '');

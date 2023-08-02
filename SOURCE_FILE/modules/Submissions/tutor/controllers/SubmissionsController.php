@@ -12,7 +12,9 @@ class SubmissionsController extends Controller{
         $tutorid = $_SESSION['user']['id'];
         $courseid = $submissionHaddler->yxz('Courses',["tutorid"=>$tutorid],'id');
 
+
         if(($_GET['act'] ?? '') == 'download'){ $this->getpdf(); }
+        if(($_GET['act'] ?? '') =='rev'){$this->markReviewed($_GET['id']);}
 
 
         $variable['submissions'] = $submissionHaddler->get_submissions(['courseid'=>$courseid]);
@@ -30,6 +32,14 @@ class SubmissionsController extends Controller{
             header('Content-Length: ' . filesize($filePath));
             readfile($filePath);
             exit;
+        }
+    }
+    private function markReviewed($id){
+        $submission = new Submissions($this->dbc);
+        $submission->findBy(['id' => $id]);
+        if(property_exists($submission, 'id')){
+            $submission->setValues(['status'=>'Reviewed']);
+            $submission->save();
         }
     }
 }

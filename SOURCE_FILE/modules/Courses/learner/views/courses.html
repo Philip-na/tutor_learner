@@ -1,31 +1,37 @@
 <main >
-  
+  <?php 
+  $comp = 0;
+  foreach($variable['courses'] as $c){
+     if(($c->status ?? "") == "complete"){
+      $comp++;
+     }
+  }
+  ?>
   <h1>Course Details & Tracking</h1>
 
   <div class="cards">
-    <div class="card">
-      <div class="header">
-       
+    <!-- <div class="card">
+      <div class="header"> 
         <p class="alert">Course Tutor
           
         </p>
       </div>
       <h1>Nabende Peter</h1>
       
-    </div>
+    </div> -->
     <div class="card">
       <div class="header">
        
-        <p class="alert">Course Topic</p>
+        <p class="alert">Enrolled courses</p>
       </div>
-       <h1>12</h1>
+       <h1><?=count($variable['courses']); ?></h1>
     </div>
     <div class="card">
       <div class="header">
        
         <p class="alert">Course Coverage</p>
       </div>
-       <h1>6 out Of 12</h1>
+       <h1><?=$comp; ?> out Of <?=count($variable['courses']); ?></h1>
     </div>   
 </div>
   <!-- input -->
@@ -40,21 +46,35 @@
                 <tr>
                     <th> <input type="checkbox"></th>
                     <th> Course Name </th>
-                    <!-- <th> Topic </th> -->
                     <th> Course Duration </th>
-                    <th>Prerequisites</th>
-                    <th>Assessment & Evaluation Technique</th>
-                    <th> Learning Outcome</th>        
+                    <th>Enrollement data</th>
+                    <th>Enrollement Status</th>
+                    <th> </th>        
                 </tr>
             </thead>
             <tbody>
               <?php $i = 1; foreach($variable['courses'] as $c) { ?>
                 <tr>
                     <td><?=$i; ?> </td>
-                    <td> <?=$c->name; ?></td>
+                    <td> <?=$c->courseData->name; ?></td>
                     <!-- <td><?=$c->tutor->username; ?></td> -->
                     <td>
-                      <?=$c->duration; ?>
+                      <?=$c->courseData->duration; ?>
+                   </td>
+                   <td><?=$c->date ?? ""; ?>  </td>
+                   <td><?=$c->status ?? ""; ?> </td>
+                   <td>
+                    <div class="menu">
+                      <button class="actionBtn">Action</button>
+
+                      <ul class="menu-link">
+                        <!-- https://www.paypal.com/in/home https://flutterwave.com/us/  https://flutterwave.com/pay/shmtsg5teams-->
+                        
+                        <li><a href="https://flutterwave.com/pay/shmtsg5teams">Pay</a></li>
+                        <li><a href="index.php?seo_name=courses&amp;act=unenrol&amp;id=<?=$c->id ?>">Unenroll</a></li>
+
+                      </ul>
+                    </div> 
                    </td>      
                 </tr>
               <?php $i = $i + 1; } ?>
@@ -68,3 +88,16 @@
     </div>
 </div>
 </main>
+
+<script  >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>

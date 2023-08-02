@@ -55,7 +55,7 @@ class Enrollment extends Entity {
                 $obj->$field = $u->$field ?? '';
             }
 
-            // relelaship Dat
+            // relelaship Data
             $obj->id = $u->id;
             $obj->course = $this->yxz("Courses",['id'=>$u->courseid],'name');
             $obj->learner = $this->yxz("User",['id'=>$u->learnerid],'username');
