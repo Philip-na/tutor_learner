@@ -77,13 +77,13 @@
           <span id="num"><?=count($variable['session']); ?></span>
 
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="header">
            
             <p class="alert">Total Learners</p>
           </div>
           <span id="num">12</span>
-        </div>
+        </div> -->
            
     </div>
     <!-- input -->
@@ -149,4 +149,33 @@
        menuLink.classList.toggle('show');
      })
    })
+  </script>
+
+<script>
+  //search
+  var searchInput = document.querySelector("input[name='search']");
+  var tableRows = document.querySelectorAll(".table__body tbody tr");
+  
+  // Event listener for the search input
+  searchInput.addEventListener("input", function() {
+   var searchValue = searchInput.value.trim().toLowerCase();
+  
+   // Iterate through each table row and hide/show based on the search value
+   tableRows.forEach(function(row) {
+     var contentCells = Array.from(row.querySelectorAll("td"));
+  
+     var isContentFound = contentCells.some(function(cell) {
+       var cellContent = cell.textContent.toLowerCase();
+       return cellContent.includes(searchValue);
+     });
+  
+     if (isContentFound) {
+       row.style.display = "";
+     } else {
+       row.style.display = "none";
+     }
+   });
+  });
+  
+  
   </script>
