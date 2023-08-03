@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2023 at 02:00 PM
+-- Generation Time: Aug 03, 2023 at 01:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -57,9 +57,10 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `name`, `duration`, `prerequisites`, `evaluation`, `learningOutcome`, `about`, `tutorid`, `created`, `category`) VALUES
-(5, 'javascrip', '38 hours', 'ppppppppppppppp', 'poog, gfgfgd, gfhd, gfhgfh, gfhgfh', 'hhhhhhhhhhhhhhhhh ', 'Create stunning websites and implement dynamic features using the latest web technologies. Join now for one-on-one sessions tailored to your needs and skill level.', 22, NULL, 'Web Development'),
-(20, 'ICT r', '38 hours', 'jk', 'jj by ggjj', 'hhhhhhhhhhhhhhhhh ', 'Create stunning websites and implement dynamic features using the latest web technologies. Join now for one-on-one sessions tailored to your needs and skill level.', 26, '2023-07-12', 'Web Development'),
-(21, 'Uganda ', '38 hours', 'pppppp', 'poog, gfgfgd, gfhd, gfhgfh, gfhgfh', 'javer', 'Create stunning websites and implement dynamic features using the latest web technologies. Join now for one-on-one sessions tailored to your needs and skill level.', 21, '2023-07-14', 'Machine learning');
+(22, 'Full Stack Web Development', '12 Weeks', 'Basic understanding of HTML, CSS, and JavaScript', 'Project completion, quizzes, final exam', 'Develop complete web applications, understand front-end and back-end development, work with databases', ' This course covers the end-to-end process of building web applications, including front-end design and back-end programming. Students will learn to create interactive and responsive web pages, implement user authentication, and manage databases.', 33, '2023-08-03', 'Web Development'),
+(23, 'Mobile App Development with Flutter', '10 weeks', 'Basic programming knowledge', 'Project completion, quizzes, final app submission', 'Develop cross-platform mobile apps, work with Flutter framework', 'This course covers mobile app development using the Flutter framework. Students will learn to build visually appealing and interactive apps that can run on both iOS and Android platforms.', 38, '2023-08-03', 'Mobile Development'),
+(24, 'Interaction Design', '10 weeks', ' User-Centered Design Principles', 'Design Assignments (40%), Interaction Prototypes (30%)', 'Design interactive and dynamic user interfaces. Understand user behavior and create user-centered interactions. Implement microinteractions and animations', 'This course delves into the advanced aspects of interaction design, focusing on creating dynamic and engaging user interfaces. Students will learn how to design interactive elements, use animations to enhance user experience, and create microinteractions that delight users.', 37, '2023-08-03', 'UI UX Design'),
+(25, 'Android App Development with Java and Android Studio', '12 Weeks', 'Basic programming knowledge, familiarity with Java', 'Project completion, coding assignments, final app submission', 'Develop native Android apps, understand Android Studio IDE', ' This course focuses on native Android app development using Java and the Android Studio IDE. Students will learn to create feature-rich apps for the Android platform.', 36, '2023-08-03', 'Mobile Development');
 
 -- --------------------------------------------------------
 
@@ -81,11 +82,7 @@ CREATE TABLE `enrollment` (
 --
 
 INSERT INTO `enrollment` (`id`, `learnerid`, `courseid`, `date`, `status`, `grade`) VALUES
-(14, 23, 5, '2023-07-13', 'complete', 0),
-(16, 25, 5, '2023-07-14', 'active', 0),
-(21, 27, 20, '2023-07-16', 'pending', 0),
-(22, 27, 21, '2023-07-16', 'pending', 0),
-(25, 25, 20, '2023-08-02', 'pending', 0);
+(28, 39, 23, '2023-08-03', 'complete', 0);
 
 -- --------------------------------------------------------
 
@@ -191,7 +188,7 @@ CREATE TABLE `sessionatedence` (
 --
 
 INSERT INTO `sessionatedence` (`id`, `learnerid`, `sessionid`, `status`) VALUES
-(2, 25, 5, 'missed');
+(7, 39, 7, 'attended');
 
 -- --------------------------------------------------------
 
@@ -213,8 +210,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `topicid`, `sessiondt`, `tutorId`, `created`, `date`) VALUES
-(5, 6, 'first charper of java', 22, '2023-07-14', '2023-07-28'),
-(6, 1, 'last taouchs', 22, '2023-07-30', '2023-07-28');
+(7, 24, 'online sesson', 38, '2023-08-03', '2023-08-07');
 
 -- --------------------------------------------------------
 
@@ -237,8 +233,7 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`id`, `studentid`, `courseid`, `name`, `slink`, `filename`, `status`) VALUES
-(2, 23, 5, 'NABIKAMBA PHILIP', 'https://philip-na.github.io/african-herberist/', '64c66b0c7ad67.pdf', 'Reviewed'),
-(4, 25, 5, 'final year REport', 'https://philip-na.github.io/african-herberist/', '64ca9a743504b.pdf', 'Not Reviewed');
+(6, 39, 23, 'Final Submission', 'https://github.com/micheal-lubowa65', '64cba1b9d12ca.pdf', 'Reviewed');
 
 -- --------------------------------------------------------
 
@@ -259,9 +254,23 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `name`, `topicdetiles`, `courseId`, `createdAt`) VALUES
-(1, 'End poverty, end hunger ', 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 5, '0000-00-00'),
-(2, 'End poverty, end hunger and promoti', 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 21, '0000-00-00'),
-(6, 'End poverty,', 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 5, '0000-00-00');
+(14, 'Introduction to Full Stack Development', 'Basic Understanding of Web', 22, '2023-08-03'),
+(16, 'HTML5 and CSS3 Fundamentals', 'Good for bigginers', 22, '2023-08-03'),
+(17, 'Principles of Interaction Design', 'basic', 24, '2023-08-03'),
+(18, 'Motion Graphics in UI/UX', 'basic', 24, '2023-08-03'),
+(19, 'Gamification and User Engagement', 'basic', 24, '2023-08-03'),
+(20, 'JavaScript and DOM Manipulation', 'Advanced course', 22, '2023-08-03'),
+(21, 'Advanced Prototyping Techniques', 'basic', 24, '2023-08-03'),
+(22, 'Collaborative Design Workflows', 'basic', 24, '2023-08-03'),
+(23, 'Database Design and Management', 'Get started with my sql', 22, '2023-08-03'),
+(24, 'Introduction to Mobile App Development', 'Get started with android', 23, '2023-08-03'),
+(25, 'Introduction to Android App Development', 'basic', 25, '2023-08-03'),
+(26, 'SQLite Database and Data Storage', 'basic', 25, '2023-08-03'),
+(27, 'Networking and API Integration', 'basic', 25, '2023-08-03'),
+(28, 'Firebase Integration: Push Notifications and Analytics', 'basic', 25, '2023-08-03'),
+(29, 'App Testing and Debugging', 'basic', 25, '2023-08-03'),
+(30, 'Flutter Basics: Widgets and Layouts', 'Flutter for beginner', 23, '2023-08-03'),
+(31, 'State Management with Provider', 'Advanced', 23, '2023-08-03');
 
 -- --------------------------------------------------------
 
@@ -290,12 +299,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `role`, `phone`, `expertise`, `qualifications`, `s_question`, `answer`, `created`) VALUES
 (18, '', 'Philip', '$2y$10$PKqdzFMDok.DE1k2cM8.m.Ao.7..3WJEf5evjU/bSMOfPBvRi8mP6', 'nabikamba14@gmail.com', 'admin', '', NULL, '', 'q3', '', NULL),
-(21, '', 'Bert', '$2y$10$vFbvLEf5KrSy2enIezgJluj8KDqWrNCeeCQBynWFVr7rECUpwFch2', 'b@gmail.com', 'tutor', '+256782578636', NULL, 'dgreaa', '', '', '2023-07-13'),
-(22, '', 'pert', '$2y$10$RrnXKo0zIxUOAE9hu4KdEOU7elRQZnH4O/vsOag54VBLsR3tJ6oDS', 'e@gmail.com', 'tutor', '+256782578636', NULL, 'dgreaa', '', '', '2023-07-13'),
-(23, '', 'marvin', '$2y$10$.dCthvDpAzG88oiUvmnK3eC7TH6yNlymJ9xF5K2I74vRpNu/HtAWa', 'd@gmail.com', 'learner', '', NULL, '', 'q3', 'j', '2023-07-13'),
-(25, '', 'yyyy', '$2y$10$CRgaQrikpfIwswOpHATRbuFNi02ascY4jRM5KR55lu5/vnu77bg9u', 'k@gmail.com', 'learner', '', NULL, '', 'q3', 'i am', '2023-07-14'),
-(26, '', 'Fahad', '$2y$10$SbVFGzc5SUHXXU/HXISyO./pl7kB3O6yY3Iy6qy4hcvjyPOVUrG5y', 'f@gmail.com', 'tutor', '+256774563649', NULL, 'dgreaa', '', '', '2023-07-15'),
-(27, '', 'lubowa micheal', '$2y$10$4kgMWEsFEWsMagbYAU3dbOKconjy1Qt7ue/sjxieA69ae.GM3AKcq', 'lubowa65@gmail.com', 'learner', '', NULL, '', 'q3', 'kampala', '2023-07-16');
+(32, '', 'Nalwanga Edith', '$2y$10$qtbZfhNTlOtFQU4JzEmTluzJTYkVuimNIPpJtOFsndUylGiVcpdIG', 'nalwangaedith@gmail.com', 'admin', '', NULL, '', 'q3', 'Kampala', '2023-08-03'),
+(33, '', 'Bitwire George', '$2y$10$Qap5rGMqYbDnQ.DTCy8IJuibp7YYaXZ6wnmImqG2eaKhdQ0ORgCq6', 'bitwire@gmail.com', 'tutor', '+256773095120', NULL, 'Masters In Computer Science', '', '', '2023-08-03'),
+(36, '', 'Baguma Rehema', '$2y$10$PHK1sFEtbsAtSrriRhel4OqQuExl/zdXzRU0FflxXHOrdAFeFgJjK', 'baguma@gmail.com', 'tutor', '+256782318001', NULL, 'Masters in Information Systems Technology', '', '', '2023-08-03'),
+(37, '', 'Mugwanya Raymond', '$2y$10$PThQ6iuUXMqOsxf49Rrx3eFOQEjJdItcaqPkzOoJyj4kSAxlk3ZK.', 'mugwanya@gmail.com', 'tutor', '+256783464953', NULL, 'Masters in Information Technology', '', '', '2023-08-03'),
+(38, '', 'Mugejjera Emmanuel', '$2y$10$G2mrEn80ckd2V0LXoubOt.80RhFF5/F7R5y6Zqh0pYK6yxEal8VXy', 'mugejjera@gmail.com', 'tutor', '+256783907864', NULL, 'Masters in Software Engineering', '', '', '2023-08-03'),
+(39, '', 'Lubowa Micheal', '$2y$10$tTayDgAV6Vpxg1xqwhPmgODi2SxcW3PGN0YW30VJLtwgnoGib1uI2', 'lubowa65@gmail.com', 'learner', '', NULL, '', 'q3', 'Kampala', '2023-08-03');
 
 --
 -- Indexes for dumped tables
@@ -387,13 +396,13 @@ ALTER TABLE `attached`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -417,31 +426,31 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `sessionatedence`
 --
 ALTER TABLE `sessionatedence`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables

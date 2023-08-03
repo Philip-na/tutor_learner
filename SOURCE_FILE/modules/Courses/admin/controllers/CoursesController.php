@@ -23,6 +23,7 @@ class CoursesController extends Controller{
             $Obj->findBy(['id'=>$_GET['id']]);
             if(property_exists($Obj, 'id')){
                 $Obj->delete();
+                header('Location: index.php?seo_name=tutors_admin');
             }
         }
 
@@ -49,7 +50,9 @@ class CoursesController extends Controller{
             }
             if($_GET['act'] ?? '' == 'del'){
                 $tobj->findBy(['id'=>$_GET['id']]);
-                $tobj->delete();
+                if(property_exists($tobj, 'id')){
+                    $tobj->delete();
+                }
             }
             $variable['topics'] = $tobj->getTopics();
     

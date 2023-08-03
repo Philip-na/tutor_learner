@@ -41,12 +41,12 @@
             <option value="UI UX Design">UI UX Design</option>
             <option value="Web Development">Web Development</option>
             <option value="Mobile Development">Mobile Development</option>
-            <option value="Machine learning">Machine learning</option>
-            <option value="others">Others</option>
+            <!-- <option value="Machine learning">Machine learning</option>
+            <option value="others">Others</option> -->
           </select>
         </div>
         <div class="form-group">
-          <label for="technique">Add and Evaluation Technique</label>
+          <label for="technique">Evaluation Technique</label>
           <input type="text" id="session" name="evaluation" required>
         </div>
         <div class="form-group">
@@ -180,3 +180,31 @@
       })
     })
 </script>
+
+<script>
+  //search
+  var searchInput = document.querySelector("input[name='search']");
+  var tableRows = document.querySelectorAll(".table__body tbody tr");
+  
+  // Event listener for the search input
+  searchInput.addEventListener("input", function() {
+   var searchValue = searchInput.value.trim().toLowerCase();
+  
+   // Iterate through each table row and hide/show based on the search value
+   tableRows.forEach(function(row) {
+     var contentCells = Array.from(row.querySelectorAll("td"));
+  
+     var isContentFound = contentCells.some(function(cell) {
+       var cellContent = cell.textContent.toLowerCase();
+       return cellContent.includes(searchValue);
+     });
+  
+     if (isContentFound) {
+       row.style.display = "";
+     } else {
+       row.style.display = "none";
+     }
+   });
+  });
+  
+  </script>

@@ -12,9 +12,6 @@ class DashboardController extends Controller{
     $pageObJ->findBy(['id'=>$this->entityId], '');
     $variable['pageObj'] = $pageObJ;
 
-    // $n = new Enrollment($this->dbc);
-    // $x = $n->get_Enrolled_Course();
-    // var_dump($x);
 
     $csobj = new Courses($this->dbc);
     if($_GET['act'] ?? '' == 'delete'){

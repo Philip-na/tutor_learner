@@ -35,7 +35,7 @@
             <h3><?=$x->name ?? " " ?></h3>
             <p><?=$x->about ?? " " ?></p>
              <!--<button class="enroll-button" id="payment-form">Enroll</button>--> 
-            <?php if($_SESSION["is_admin"] ?? 0 == 1){ ?>
+            <?php if((($_SESSION["is_admin"] ?? 0) == 1) && (($_SESSION['user']['role'] ?? '') =="learner")){ ?>
                 <a href="index.php?seo_name=enroll&amp;id=<?=$x->id ?>"> <button id="add" class="enroll-button">Enroll &#x2192;</button></a>
             <?php } ?>
         </div>
@@ -47,7 +47,7 @@
     </div>
     </section>
      <!-- our team -->
-    <section class="team-section">
+    <section class="team-section" id="team-section">
         <h2>Meet our team</h2>
         
         <div class="team-content">
@@ -58,27 +58,27 @@
             <div class="profile-card">
                 <img src="images/3.jpg" alt="Profile 1">
                 <h3>Philip Nabikamba</h3>
-                <p>Full Stuck Developer</p>
+                <p>Back-End Developer</p>
             </div>
             <!-- Add more profile cards as needed -->
             <div class="profile-card">
-                <img src="images/photo.jpg" alt="Profile 1">
-                <h3>John Doe</h3>
-                <p>Web Developer</p>
+                <img src="images/WhatsApp Image 2023-08-03 at 5.44.42 PM.jpeg" alt="Profile 1">
+                <h3>Lubowa Micheal </h3>
+                <p>System Analyst</p>
+            </div>
+            <div class="profile-card">
+                <img src="images/john.jpeg" alt="Profile 1">
+                <h3>John Okitoi j</h3>
+                <p>Front-End Developer</p>
+            </div>
+            <div class="profile-card">
+                <img src="images/bert.jpeg" alt="Profile 1">
+                <h3>Tuyishimire Bertrand </h3>
+                <p>UI/UX Designer</p>
             </div>
             <div class="profile-card">
                 <img src="images/photo.jpg" alt="Profile 1">
-                <h3>John Doe</h3>
-                <p>Web Developer</p>
-            </div>
-            <div class="profile-card">
-                <img src="images/photo.jpg" alt="Profile 1">
-                <h3>John Doe</h3>
-                <p>Web Developer</p>
-            </div>
-            <div class="profile-card">
-                <img src="images/photo.jpg" alt="Profile 1">
-                <h3>John Doe</h3>
+                <h3>Mukiibi Muhammad</h3>
                 <p>Web Developer</p>
             </div>
         </div>
@@ -126,7 +126,7 @@
                         <span><?=$p->courseData->category ?? '' ?></span>
                         <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                     </div>
-                    <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                    <p class="name"><?=$p->learnerData->username ?? ''; ?> :      </p>
                     <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                     <br>
                     
@@ -151,7 +151,7 @@
                                 <span><?=$p->courseData->category ?? '' ?></span>
                                 <span > <a href="<?=$p->submission->slink ?? ''; ?>" target="_blank" rel="noopener noreferrer">View Project &#x2197;</a> </span>
                             </div>
-                            <p class="name"><?=$p->learnerData->username ?? ''; ?> ::: </p>
+                            <p class="name"><?=$p->learnerData->username ?? ''; ?>: </p>
                             <p class="name"><?=$p->learnerData->email ?? ''; ?></p>
                             
                             

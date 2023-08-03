@@ -18,7 +18,7 @@
                     <th>Phone Number</th>
                     <th>Area(s) of Expertise</th>
                     <th>Qualifications</th>
-                    <th>Rate</th>
+                    <!-- <th>Rate</th> -->
                     
                     
                     
@@ -36,17 +36,17 @@
                   <td><?=$t->phone ?? " " ?></td>
                   <td><?=$t->expertise ?? " " ?></td>
                     <td><?=$t->qualifications ?? " " ?></td>
-                    <td> <button class="rate"id="popup-button">Rate</button> </td>
+                    <!-- <td> <button class="rate"id="popup-button">Rate</button> </td> -->
                     
                    
                 </tr> 
                 <?php $i++; } ?> 
             </tbody>
         </table>
-        <div class="table-btn">
+        <!-- <div class="table-btn">
           <button class="pre">Previous</button>
           <button class="next">Next</button>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="wrapper" id="popup-overlay">
@@ -63,12 +63,40 @@
           <i class='bx bx-star star' style="--i: 4;"></i>
       </div>
       <!-- <textarea name="opinion" cols="30" rows="5" placeholder="Your opinion..."></textarea> -->
-      <div class="btn-group">
+      <!-- <div class="btn-group">
         <button class="btn cancel" id="close-button">Cancel</button>
        <button type="submit" class="btn submit">Submit</button>
           
-      </div>
+      </div> -->
   </form>
   </div>
 </div>
 </main>
+
+<script>
+  //search
+  var searchInput = document.querySelector("input[name='search']");
+  var tableRows = document.querySelectorAll(".table__body tbody tr");
+  
+  // Event listener for the search input
+  searchInput.addEventListener("input", function() {
+   var searchValue = searchInput.value.trim().toLowerCase();
+  
+   // Iterate through each table row and hide/show based on the search value
+   tableRows.forEach(function(row) {
+     var contentCells = Array.from(row.querySelectorAll("td"));
+  
+     var isContentFound = contentCells.some(function(cell) {
+       var cellContent = cell.textContent.toLowerCase();
+       return cellContent.includes(searchValue);
+     });
+  
+     if (isContentFound) {
+       row.style.display = "";
+     } else {
+       row.style.display = "none";
+     }
+   });
+  });
+  
+  </script>
