@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2023 at 05:29 PM
+-- Generation Time: Aug 03, 2023 at 02:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -84,7 +84,8 @@ INSERT INTO `enrollment` (`id`, `learnerid`, `courseid`, `date`, `status`, `grad
 (14, 23, 5, '2023-07-13', 'complete', 0),
 (16, 25, 5, '2023-07-14', 'active', 0),
 (21, 27, 20, '2023-07-16', 'pending', 0),
-(22, 27, 21, '2023-07-16', 'pending', 0);
+(22, 27, 21, '2023-07-16', 'pending', 0),
+(25, 25, 20, '2023-08-02', 'pending', 0);
 
 -- --------------------------------------------------------
 
@@ -190,9 +191,7 @@ CREATE TABLE `sessionatedence` (
 --
 
 INSERT INTO `sessionatedence` (`id`, `learnerid`, `sessionid`, `status`) VALUES
-(1, 25, 4, 'attended'),
-(2, 25, 5, 'missed'),
-(3, 27, 4, 'attended');
+(2, 25, 5, 'missed');
 
 -- --------------------------------------------------------
 
@@ -214,7 +213,6 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `topicid`, `sessiondt`, `tutorId`, `created`, `date`) VALUES
-(4, 1, 'jhjhgfjjfffjkl', 22, '2023-07-14', '2023-07-27'),
 (5, 6, 'first charper of java', 22, '2023-07-14', '2023-07-28'),
 (6, 1, 'last taouchs', 22, '2023-07-30', '2023-07-28');
 
@@ -230,15 +228,17 @@ CREATE TABLE `submissions` (
   `courseid` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `slink` varchar(2000) DEFAULT NULL,
-  `filename` varchar(2000) DEFAULT NULL
+  `filename` varchar(2000) DEFAULT NULL,
+  `status` varchar(200) NOT NULL DEFAULT 'Not Reviewed '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `submissions`
 --
 
-INSERT INTO `submissions` (`id`, `studentid`, `courseid`, `name`, `slink`, `filename`) VALUES
-(2, 25, 5, 'NABIKAMBA PHILIP', 'https://philip-na.github.io/african-herberist/', '64c66b0c7ad67.pdf');
+INSERT INTO `submissions` (`id`, `studentid`, `courseid`, `name`, `slink`, `filename`, `status`) VALUES
+(2, 23, 5, 'NABIKAMBA PHILIP', 'https://philip-na.github.io/african-herberist/', '64c66b0c7ad67.pdf', 'Reviewed'),
+(4, 25, 5, 'final year REport', 'https://philip-na.github.io/african-herberist/', '64ca9a743504b.pdf', 'Not Reviewed');
 
 -- --------------------------------------------------------
 
@@ -393,7 +393,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -429,7 +429,7 @@ ALTER TABLE `sessions`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `topics`
